@@ -1,0 +1,30 @@
+{
+  "name": "pevs-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/pevs-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/pevs-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "pevs:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "pevs:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "pevs:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["pevs"]
+}
